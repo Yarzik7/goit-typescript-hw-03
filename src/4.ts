@@ -5,7 +5,7 @@ class Key {
     this.signature = Math.random();
   }
 
-  getSignature() {
+  getSignature(): number {
     return this.signature;
   }
 }
@@ -13,7 +13,7 @@ class Key {
 class Person {
   constructor(private key: Key) {}
 
-  getKey() {
+  getKey(): Key {
     return this.key;
   }
 }
@@ -26,7 +26,7 @@ abstract class House {
     this.door = false;
   }
 
-  comeIn(person: Person) {
+  comeIn(person: Person): void {
     if (!this.door) {
       console.log("Двері зачинено. Спочатку відкрийте двері ключем");
       return;
@@ -46,12 +46,12 @@ class MyHouse extends House {
 
   openDoor(key: Key): void {
     if (key !== this.key) {
-      console.log("Ключ не збігається!");
+      console.log("Ключ не збігається");
       return;
     }
 
     this.door = true;
-    console.log("Двері відкрито!");
+    console.log("Двері відкрито");
   }
 }
 
@@ -64,4 +64,4 @@ house.openDoor(person.getKey());
 
 house.comeIn(person);
 
-// export {};
+export {};
