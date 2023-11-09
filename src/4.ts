@@ -1,9 +1,5 @@
 class Key {
-  private signature: number;
-
-  constructor() {
-    this.signature = Math.random();
-  }
+  private signature: number = Math.random();
 
   getSignature(): number {
     return this.signature;
@@ -19,12 +15,10 @@ class Person {
 }
 
 abstract class House {
-  protected door: boolean;
+  protected door: boolean = false;
   private tenants: Person[] = [];
 
-  constructor(protected key: Key) {
-    this.door = false;
-  }
+  constructor(protected key: Key) {}
 
   comeIn(person: Person): void {
     if (!this.door) {
@@ -40,12 +34,8 @@ abstract class House {
 }
 
 class MyHouse extends House {
-  constructor(key: Key) {
-    super(key);
-  }
-
   openDoor(key: Key): void {
-    if (key !== this.key) {
+    if (key.getSignature() !== this.key.getSignature()) {
       console.log("Ключ не збігається");
       return;
     }
